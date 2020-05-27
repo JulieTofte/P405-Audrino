@@ -7,11 +7,12 @@
 unsigned long pingTimer[SONAR_NUM]; // When each pings.
 unsigned int cm[SONAR_NUM]; // Store ping distances.
 uint8_t currentSensor = 0; // Which sensor is active.
+int a;
  
 NewPing sonar[SONAR_NUM] = { // Sensor object array.
   NewPing(2, 3, MAX_DISTANCE),
-  NewPing(9, 8, MAX_DISTANCE),
-  NewPing(11, 10, MAX_DISTANCE),
+  NewPing(8, 9, MAX_DISTANCE),
+  NewPing(10, 11, MAX_DISTANCE),
 };
  
 void setup() {
@@ -40,6 +41,10 @@ void echoCheck() { // If ping echo, set distance to array.
  
 void oneSensorCycle() { // Do something with the results.
   for (uint8_t i = 0; i < SONAR_NUM; i++) {
-    Serial.write((i*100)+(cm[i]/10));
+    a =(i*100)+(cm[i]/2);
+    if ((a == 100) || (a== 200)){
+      a=0;
+    }
+    Serial.write(a);
   }
 }
