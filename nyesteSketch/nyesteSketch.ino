@@ -8,6 +8,8 @@ unsigned long pingTimer[SONAR_NUM]; // When each pings.
 unsigned int cm[SONAR_NUM]; // Store ping distances.
 uint8_t currentSensor = 0; // Which sensor is active.
 int a;
+//put your height here
+int height = 160
  
 NewPing sonar[SONAR_NUM] = { // Sensor object array.
   NewPing(2, 3, MAX_DISTANCE),
@@ -17,8 +19,8 @@ NewPing sonar[SONAR_NUM] = { // Sensor object array.
  
 void setup() {
   Serial.begin(9600);
-  //The height should be put in dist
-  DIST(160);
+  
+  DIST(height);
   
   pingTimer[0] = millis() + 75; // First ping start in ms.
   for (uint8_t i = 1; i < SONAR_NUM; i++)
