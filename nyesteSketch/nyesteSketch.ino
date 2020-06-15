@@ -1,7 +1,7 @@
 #include <NewPing.h>
 
 #define SONAR_NUM     3 // Number or sensors.
-#define MAX_DISTANCE 20 // Max distance in cm.
+#define MAX_DISTANCE // Max distance in cm.
 #define PING_INTERVAL 200 // Milliseconds between pings.
  
 unsigned long pingTimer[SONAR_NUM]; // When each pings.
@@ -17,6 +17,7 @@ NewPing sonar[SONAR_NUM] = { // Sensor object array.
  
 void setup() {
   Serial.begin(9600);
+  dist(160);
   pingTimer[0] = millis() + 75; // First ping start in ms.
   for (uint8_t i = 1; i < SONAR_NUM; i++)
     pingTimer[i] = pingTimer[i - 1] + PING_INTERVAL;
@@ -47,4 +48,22 @@ void oneSensorCycle() { // Do something with the results.
     }
     Serial.write(a);
   }
+}
+void dist(int height){
+if(height >= 140 && height <= 150){
+  MAX_DISTANCE = 20;
+  } else if( height >= 151 && height <= 160){
+    MAX_DISTANCE = 30;
+    }else if( height >= 161 && height <= 170){
+    MAX_DISTANCE = 40;
+    }else if( height >= 171 && height <= 180){
+    MAX_DISTANCE = 50;
+    }else if( height >= 181 && height <= 190){
+    MAX_DISTANCE = 60;
+    }else if( height >= 191 && height <= 200){
+    MAX_DISTANCE = 70;
+    }else if( height >= 201 && height <= 210){
+    MAX_DISTANCE = 80;
+    }
+
 }
