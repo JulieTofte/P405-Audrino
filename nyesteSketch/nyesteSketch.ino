@@ -17,7 +17,9 @@ NewPing sonar[SONAR_NUM] = { // Sensor object array.
  
 void setup() {
   Serial.begin(9600);
-  dist(160);
+  //The height should be put in dist
+  DIST(160);
+  
   pingTimer[0] = millis() + 75; // First ping start in ms.
   for (uint8_t i = 1; i < SONAR_NUM; i++)
     pingTimer[i] = pingTimer[i - 1] + PING_INTERVAL;
@@ -49,7 +51,7 @@ void oneSensorCycle() { // Do something with the results.
     Serial.write(a);
   }
 }
-void dist(int height){
+void DIST(int height){
 if(height >= 140 && height <= 150){
   MAX_DISTANCE = 20;
   } else if( height >= 151 && height <= 160){
